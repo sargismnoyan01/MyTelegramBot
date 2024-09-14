@@ -1,4 +1,3 @@
-# 7413129195:AAFNWGT1pTt_OIXwg4BuwRIgVdaOSt052Fw
 
 import logging
 from telegram import Update, ForceReply, InlineKeyboardButton, InlineKeyboardMarkup
@@ -23,12 +22,12 @@ async def start(update: Update, context: CallbackContext) -> None:
 
     if update.message:
         await update.message.reply_text(
-            "Salom👋. 🐼 Panda Pay ga xush kelibsiz",
+            "Salom👋. 🐼 My bot ga xush kelibsiz",
             reply_markup=reply_markup
         )
     elif update.callback_query:
         await update.callback_query.message.reply_text(
-            "🐼 Panda Pay ga xush kelibsiz",
+            "🐼 My bot ga xush kelibsiz",
             reply_markup=reply_markup
         )
 
@@ -50,7 +49,7 @@ async def name(update: Update, context: CallbackContext) -> int:
 
 async def game_id(update: Update, context: CallbackContext) -> int:
     context.user_data['game_id'] = update.message.text
-    await update.message.reply_text("📱 +998* raqamini yuboring.")
+    await update.message.reply_text("📱 +374* raqamini yuboring.")
     return PHONE_NUMBER
 
 async def phone_number(update: Update, context: CallbackContext) -> int:
@@ -62,8 +61,8 @@ async def amount(update: Update, context: CallbackContext) -> int:
     context.user_data['amount'] = update.message.text
 
     keyboard = [
-        [InlineKeyboardButton("💳 XUMO", callback_data='XUMO')],
-        [InlineKeyboardButton("💳 UZCARD", callback_data='UZCARD')],
+        [InlineKeyboardButton("💳 VISA", callback_data='VISA')],
+        [InlineKeyboardButton("💳 MASTER", callback_data='MASTER')],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
@@ -75,10 +74,10 @@ async def transfer_method(update: Update, context: CallbackContext) -> int:
     await query.answer()
     choice = query.data
 
-    if choice == 'XUMO':
-        await query.message.reply_text("XUMO kartasi tanlandi: 9860030101191978")
-    elif choice == 'UZCARD':
-        await query.message.reply_text("UZCARD kartasi tanlandi: 8600020783405728")
+    if choice == 'VISA':
+        await query.message.reply_text("VISA kartasi tanlandi: 9860030101191978")
+    elif choice == 'MASTER':
+        await query.message.reply_text("MASTER kartasi tanlandi: 8600020783405728")
 
     context.user_data['transfer_method'] = choice
 
@@ -112,7 +111,7 @@ async def picture(update: Update, context: CallbackContext) -> int:
     application_id = f"{user_data['game_id']}-{update.effective_chat.id}"
     applications[application_id] = user_data
 
-    recipient_chat_id = 7166570158
+    recipient_chat_id = 'Your ID'
     user_data['user_chat_id'] = update.effective_chat.id
 
     keyboard = [
@@ -191,7 +190,7 @@ async def get_chat_id(update: Update, context: CallbackContext) -> None:
     await update.message.reply_text(f'This chat ID is: {chat_id}')
 
 def main() -> None:
-    TOKEN = '7470339714:AAHcNVhMChj-PM9FncGb35ku5tu6dobVlIs'
+    TOKEN = 'YOUR TOKEN'
 
     application = ApplicationBuilder().token(TOKEN).build()
 
